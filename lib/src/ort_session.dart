@@ -291,6 +291,15 @@ class OrtSessionOptions {
         .asFunction<void Function(ffi.Pointer<bg.OrtSessionOptions>)>()(_ptr);
   }
 
+  void registerCustomOpsLibrary(String libPath) {
+    final statusPtr = OrtEnv.instance.ortApiPtr.ref.RegisterCustomOpsLibrary_V2
+            .asFunction<
+                bg.OrtStatusPtr Function(ffi.Pointer<bg.OrtSessionOptions>,
+                    ffi.Pointer<ffi.Char>)>()(
+        _ptr, libPath.toNativeUtf8().cast<ffi.Char>());
+    OrtStatus.checkOrtStatus(statusPtr);
+  }
+
   /// Sets the number of intra op threads.
   void setIntraOpNumThreads(int numThreads) {
     _intraOpNumThreads = numThreads;

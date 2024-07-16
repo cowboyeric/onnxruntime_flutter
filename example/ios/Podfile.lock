@@ -2,8 +2,10 @@ PODS:
   - Flutter (1.0.0)
   - onnxruntime (0.0.1):
     - Flutter
+    - onnxruntime-extensions-c
     - onnxruntime-objc (= 1.15.1)
   - onnxruntime-c (1.15.1)
+  - onnxruntime-extensions-c (0.11.0)
   - onnxruntime-objc (1.15.1):
     - onnxruntime-objc/Core (= 1.15.1)
   - onnxruntime-objc/Core (1.15.1):
@@ -20,6 +22,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - onnxruntime-c
+    - onnxruntime-extensions-c
     - onnxruntime-objc
 
 EXTERNAL SOURCES:
@@ -32,11 +35,12 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
-  onnxruntime: e9346181d75b8dea8733bdae512a22c298962e00
+  onnxruntime: e199dd7e9195efaf104f16764f933ab2e44a4e05
   onnxruntime-c: ebdcfd8650bcbd10121c125262f99dea681b92a3
+  onnxruntime-extensions-c: 31b92817881c87848e2b240397f1989081546d14
   onnxruntime-objc: ae7acec7a3d03eaf072d340afed7a35635c1c2a6
-  path_provider_foundation: 29f094ae23ebbca9d3d0cec13889cd9060c0e943
+  path_provider_foundation: 2b6b4c569c0fb62ec74538f866245ac84301af46
 
 PODFILE CHECKSUM: 819463e6a0290f5a72f145ba7cde16e8b6ef0796
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.15.2

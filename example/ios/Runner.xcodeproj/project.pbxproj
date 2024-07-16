@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07F40D352C46FA1B009547A3 /* onnxruntime_extensions.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07F40D342C46FA1B009547A3 /* onnxruntime_extensions.xcframework */; };
+		07F40D362C46FA1B009547A3 /* onnxruntime_extensions.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 07F40D342C46FA1B009547A3 /* onnxruntime_extensions.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		07F40D382C46FCE0009547A3 /* onnxruntime.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07F40D372C46FCE0009547A3 /* onnxruntime.xcframework */; };
+		07F40D392C46FCE0009547A3 /* onnxruntime.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 07F40D372C46FCE0009547A3 /* onnxruntime.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */; };
 		331C808B294A63AB00263BE5 /* RunnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C807B294A618700263BE5 /* RunnerTests.swift */; };
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
@@ -35,6 +39,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				07F40D362C46FA1B009547A3 /* onnxruntime_extensions.xcframework in Embed Frameworks */,
+				07F40D392C46FCE0009547A3 /* onnxruntime.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -42,6 +48,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		07F40D342C46FA1B009547A3 /* onnxruntime_extensions.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = onnxruntime_extensions.xcframework; path = "Pods/onnxruntime-extensions-c/onnxruntime_extensions.xcframework"; sourceTree = "<group>"; };
+		07F40D372C46FCE0009547A3 /* onnxruntime.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = onnxruntime.xcframework; path = "Pods/onnxruntime-c/onnxruntime.xcframework"; sourceTree = "<group>"; };
 		1498D2321E8E86230040F4C2 /* GeneratedPluginRegistrant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeneratedPluginRegistrant.h; sourceTree = "<group>"; };
 		1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedPluginRegistrant.m; sourceTree = "<group>"; };
 		1657E4E300CC2147EBAC2E3A /* Pods_RunnerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RunnerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,6 +89,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				77CDDBC9C6138E2AADFE0F22 /* Pods_Runner.framework in Frameworks */,
+				07F40D352C46FA1B009547A3 /* onnxruntime_extensions.xcframework in Frameworks */,
+				07F40D382C46FCE0009547A3 /* onnxruntime.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,6 +168,8 @@
 		DD6B1E78AFE541E29F6DB4E0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				07F40D372C46FCE0009547A3 /* onnxruntime.xcframework */,
+				07F40D342C46FA1B009547A3 /* onnxruntime_extensions.xcframework */,
 				BCEEE7BE8EC40E9527D8196D /* Pods_Runner.framework */,
 				1657E4E300CC2147EBAC2E3A /* Pods_RunnerTests.framework */,
 			);

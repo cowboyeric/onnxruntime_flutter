@@ -21,7 +21,8 @@ OnnxRuntime plugin for Flutter apps.
   # s.source_files = 'Classes/**/*'
   s.dependency 'Flutter'
   s.dependency 'onnxruntime-objc', '1.15.1'
-  s.platform = :ios, '11.0'
+  s.dependency 'onnxruntime-extensions-c'
+  s.platform = :ios, '13.0'
   s.static_framework = true
 
   # Flutter.framework does not contain a i386 slice.

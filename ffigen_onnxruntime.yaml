@@ -13,6 +13,7 @@ headers:
     - 'src/onnxruntime/onnxruntime_c_api.h'
     - 'src/onnxruntime/onnxruntime_cxx_api.h'
     - 'src/onnxruntime/onnxruntime_cxx_inline.h'
+    - 'src/onnxruntime/onnxruntime_extensions.h'
   include-directives:
     - 'src/onnxruntime/coreml_provider_factory.h'
     - 'src/onnxruntime/cpu_provider_factory.h'
@@ -20,6 +21,7 @@ headers:
     - 'src/onnxruntime/onnxruntime_c_api.h'
     - 'src/onnxruntime/onnxruntime_cxx_api.h'
     - 'src/onnxruntime/onnxruntime_cxx_inline.h'
+    - 'src/onnxruntime/onnxruntime_extensions.h'
 preamble: |
   // ignore_for_file: always_specify_types
   // ignore_for_file: camel_case_types
