@@ -18,9 +18,9 @@ OnnxRuntime plugin for Flutter apps.
   # paths, so Classes contains a forwarder C file that relatively imports
   # `../src/*` so that the C sources can be shared among all target platforms.
   s.source           = { :path => '.' }
-  # s.source_files = 'Classes/**/*'
+  s.source_files = 'Classes/**/*'
   s.dependency 'Flutter'
-  s.dependency 'onnxruntime-objc', '1.15.1'
+  s.dependency 'onnxruntime-objc', '1.17.0-dev+20231211010.8f2b5a6'
   s.dependency 'onnxruntime-extensions-c'
   s.platform = :ios, '13.0'
   s.static_framework = true

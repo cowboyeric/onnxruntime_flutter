@@ -8,7 +8,7 @@ final DynamicLibrary _dylib = () {
   }
 
   if (Platform.isIOS) {
-    return DynamicLibrary.process();
+    return DynamicLibrary.executable();
   }
 
   if (Platform.isMacOS) {

@@ -292,12 +292,25 @@ class OrtSessionOptions {
   }
 
   void registerCustomOpsLibrary(String libPath) {
-    final statusPtr = OrtEnv.instance.ortApiPtr.ref.RegisterCustomOpsLibrary_V2
-            .asFunction<
-                bg.OrtStatusPtr Function(ffi.Pointer<bg.OrtSessionOptions>,
-                    ffi.Pointer<ffi.Char>)>()(
-        _ptr, libPath.toNativeUtf8().cast<ffi.Char>());
-    OrtStatus.checkOrtStatus(statusPtr);
+    if (Platform.isAndroid) {
+      final ppv = calloc<ffi.Pointer<ffi.Void>>();
+      final statusPtr = OrtEnv.instance.ortApiPtr.ref.RegisterCustomOpsLibrary
+              .asFunction<
+                  bg.OrtStatusPtr Function(
+                      ffi.Pointer<bg.OrtSessionOptions>,
+                      ffi.Pointer<ffi.Char>,
+                      ffi.Pointer<ffi.Pointer<ffi.Void>>)>()(
+          _ptr, libPath.toNativeUtf8().cast<ffi.Char>(), ppv);
+      OrtStatus.checkOrtStatus(statusPtr);
+    } else {
+      final statusPtr = OrtEnv
+              .instance.ortApiPtr.ref.RegisterCustomOpsUsingFunction
+              .asFunction<
+                  bg.OrtStatusPtr Function(ffi.Pointer<bg.OrtSessionOptions>,
+                      ffi.Pointer<ffi.Char>)>()(
+          _ptr, 'RegisterCustomOps'.toNativeUtf8().cast<ffi.Char>());
+      OrtStatus.checkOrtStatus(statusPtr);
+    }
   }
 
   /// Sets the number of intra op threads.
