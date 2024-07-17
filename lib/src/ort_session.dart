@@ -240,8 +240,8 @@ class OrtSession {
     final outputPtrs = calloc<ffi.Pointer<bg.OrtValue>>(outputLength);
     var y = 0;
     for (final entry in outputVars.entries) {
-      inputNamePtrs[y] = entry.key.toNativeUtf8().cast<ffi.Char>();
-      inputPtrs[y] = entry.value.ptr;
+      outputNamePtrs[y] = entry.key.toNativeUtf8().cast<ffi.Char>();
+      outputPtrs[y] = entry.value.ptr;
       ++y;
     }
     var statusPtr = OrtEnv.instance.ortApiPtr.ref.Run.asFunction<
