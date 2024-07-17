@@ -223,6 +223,77 @@ class OrtSession {
     return outputs;
   }
 
+  List<OrtValue?> run2(OrtRunOptions runOptions, Map<String, OrtValue> inputs,
+      Map<String, OrtValue> outputVars) {
+    final inputLength = inputs.length;
+    final inputNamePtrs = calloc<ffi.Pointer<ffi.Char>>(inputLength);
+    final inputPtrs = calloc<ffi.Pointer<bg.OrtValue>>(inputLength);
+    var i = 0;
+    for (final entry in inputs.entries) {
+      inputNamePtrs[i] = entry.key.toNativeUtf8().cast<ffi.Char>();
+      inputPtrs[i] = entry.value.ptr;
+      ++i;
+    }
+
+    final outputLength = outputVars.length;
+    final outputNamePtrs = calloc<ffi.Pointer<ffi.Char>>(outputLength);
+    final outputPtrs = calloc<ffi.Pointer<bg.OrtValue>>(outputLength);
+    var y = 0;
+    for (final entry in outputVars.entries) {
+      inputNamePtrs[y] = entry.key.toNativeUtf8().cast<ffi.Char>();
+      inputPtrs[y] = entry.value.ptr;
+      ++y;
+    }
+    var statusPtr = OrtEnv.instance.ortApiPtr.ref.Run.asFunction<
+            bg.OrtStatusPtr Function(
+                ffi.Pointer<bg.OrtSession>,
+                ffi.Pointer<bg.OrtRunOptions>,
+                ffi.Pointer<ffi.Pointer<ffi.Char>>,
+                ffi.Pointer<ffi.Pointer<bg.OrtValue>>,
+                int,
+                ffi.Pointer<ffi.Pointer<ffi.Char>>,
+                int,
+                ffi.Pointer<ffi.Pointer<bg.OrtValue>>)>()(
+        _ptr,
+        runOptions._ptr,
+        inputNamePtrs,
+        inputPtrs,
+        inputLength,
+        outputNamePtrs,
+        outputLength,
+        outputPtrs);
+    OrtStatus.checkOrtStatus(statusPtr);
+    final outputs = List<OrtValue?>.generate(outputLength, (index) {
+      final ortValuePtr = outputPtrs[index];
+      final onnxTypePtr = calloc<ffi.Int32>();
+      statusPtr = OrtEnv.instance.ortApiPtr.ref.GetValueType.asFunction<
+          bg.OrtStatusPtr Function(ffi.Pointer<bg.OrtValue>,
+              ffi.Pointer<ffi.Int32>)>()(ortValuePtr, onnxTypePtr);
+      OrtStatus.checkOrtStatus(statusPtr);
+      final onnxType = ONNXType.valueOf(onnxTypePtr.value);
+      calloc.free(onnxTypePtr);
+      switch (onnxType) {
+        case ONNXType.tensor:
+          return OrtValueTensor(ortValuePtr);
+        case ONNXType.sequence:
+          return OrtValueSequence(ortValuePtr);
+        case ONNXType.map:
+          return OrtValueMap(ortValuePtr);
+        case ONNXType.sparseTensor:
+          return OrtValueSparseTensor(ortValuePtr);
+        case ONNXType.unknown:
+        case ONNXType.opaque:
+        case ONNXType.optional:
+          return null;
+      }
+    });
+    calloc.free(inputNamePtrs);
+    calloc.free(inputPtrs);
+    calloc.free(outputNamePtrs);
+    calloc.free(outputPtrs);
+    return outputs;
+  }
+
   /// Performs inference asynchronously.
   Future<List<OrtValue?>>? runAsync(
       OrtRunOptions runOptions, Map<String, OrtValue> inputs,
