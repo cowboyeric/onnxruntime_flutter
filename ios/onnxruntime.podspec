@@ -20,7 +20,7 @@ OnnxRuntime plugin for Flutter apps.
   s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*'
   s.dependency 'Flutter'
-  s.dependency 'onnxruntime-objc', '1.17.0-dev+20231211010.8f2b5a6'
+  s.dependency 'onnxruntime-objc'
   s.dependency 'onnxruntime-extensions-c'
   s.platform = :ios, '13.0'
   s.static_framework = true
